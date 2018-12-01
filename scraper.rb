@@ -16,8 +16,7 @@ input.each_with_index do |x, i|
     begin
       docs = Nokogiri::HTML(open(url,
         :allow_redirections => :safe,
-        "User-Agent" => "Ruby/#{RUBY_VERSION}",
-        "Referer" => "http://www.ruby-lang.org/"
+        "User-Agent" => "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_10_1) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/39.0.2171.95 Safari/537.36"
       ))
 
       price = nil
@@ -64,12 +63,12 @@ input.each_with_index do |x, i|
 
       output << [price, name, category, subcategory, asin, url]
 
-      sleep 1
+      sleep 5
     rescue Exception => e
       puts "couldn't process url #{url}: #{e}"
       output << []
 
-      sleep 1
+      sleep 5
     end
   end
 end
