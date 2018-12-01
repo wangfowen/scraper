@@ -6,10 +6,12 @@ input = CSV.read(ARGV[0])
 output = []
 output << ["Price", "Product Name", "Category", "Subcategory", "ASIN", "URL"]
 
-input.each do |x|
+input.each_with_index do |x, i|
   url = x[0]
 
   if !url.nil? && url.include?("amazon")
+    puts "processing row ##{i + 1}..."
+
     begin
       docs = Nokogiri::HTML(open(url,
         "User-Agent" => "Ruby/#{RUBY_VERSION}",
@@ -68,3 +70,4 @@ input.each do |x|
 end
 
 File.write("output.csv", output.map(&:to_csv).join)
+puts "complete!"

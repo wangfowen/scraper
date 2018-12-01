@@ -12,7 +12,14 @@ bundle
 Expected input is a csv of amazon URLs
 
 ```
-ruby scraper.rb <INPUT CSV>
+cd workspace/scraper
+ruby scraper.rb amazon.csv
 ```
 
-Output is a `output.csv` file in the folder you're at
+or if input is something you downloaded
+
+```
+ruby scraper.rb ~/Downloads/<FILENAME>
+```
+
+Output is a `output.csv` file in the scraper folder
