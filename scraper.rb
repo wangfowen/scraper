@@ -1,4 +1,5 @@
 require 'open-uri'
+require 'open_uri_redirections'
 require 'csv'
 require 'nokogiri'
 
@@ -14,6 +15,7 @@ input.each_with_index do |x, i|
 
     begin
       docs = Nokogiri::HTML(open(url,
+        :allow_redirections => :safe,
         "User-Agent" => "Ruby/#{RUBY_VERSION}",
         "Referer" => "http://www.ruby-lang.org/"
       ))
@@ -65,6 +67,9 @@ input.each_with_index do |x, i|
       sleep 1
     rescue Exception => e
       puts "couldn't process url #{url}: #{e}"
+      output << []
+
+      sleep 1
     end
   end
 end
